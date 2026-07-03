@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detección Automatizada de Espasmos Infantiles - Presentación del Proyecto</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Floating Background Blobs -->
+  <div class="bg-blobs">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <!-- Quick Toggle View Mode -->
+  <div class="view-mode-bar">
+    <button id="toggle-view-btn" class="view-mode-btn" title="Alternar entre modo diapositiva e impresión">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v8H6z"/></svg>
+      Vista Continua / Imprimir
+    </button>
+  </div>
+
+  <!-- Presentation Main Container -->
+  <div class="presentation-container">
+    
+    <!-- Slides Wrapper -->
+    <main class="slides-wrapper" id="slides-container">
+      
+      <!-- DIAPOSITIVA 1: Portada -->
+      <section class="slide active" id="slide-1" data-slide-index="1">
+        <div class="glass-card">
+          <div class="cover-layout">
+            <div class="cover-badge">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              Resolución Vicerrectoral Nº 122/2025
+            </div>
+            <h1 class="cover-title">Detección Automatizada de<br><span class="gradient-text-purple">Espasmos Infantiles</span> mediante Análisis de Video</h1>
+            <p class="cover-subtitle">Proyecto de Investigación Científica para el diagnóstico oportuno del Síndrome de West en Atención Primaria de Salud.</p>
+            
+            <div class="cover-team">
+              <div class="team-member">
+                <span class="member-role">Investigadora Principal</span>
+                <span class="member-name">Dra. Carolina Cardoso</span>
+                <span class="member-inst">UCASAL</span>
+              </div>
+              <div class="team-member">
+                <span class="member-role">Investigadora</span>
+                <span class="member-name">Dra. Analía Pastrana</span>
+                <span class="member-inst">UCASAL</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="slide-footer">
+            <span class="footer-text">Presentación del Proyecto · UCASAL 2026</span>
+            <div class="logo-ucasal">UCA<span>SAL</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- DIAPOSITIVA 2: El Problema Clínico -->
+      <section class="slide" id="slide-2" data-slide-index="2">
+        <div class="glass-card">
+          <header class="slide-header">
+            <div>
+              <h2>
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent-red)" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                El Problema Clínico
+              </h2>
+              <div class="slide-subtitle">Retraso diagnóstico y su impacto neurológico</div>
+            </div>
+            <span class="institution-tag">Contexto Clínico</span>
+          </header>
+          
+          <div class="slide-body">
+            <div class="grid-2col">
+              <div class="clinical-description">
+                <p>Los <strong>espasmos infantiles</strong> son un tipo de crisis epiléptica grave que se presenta típicamente en lactantes de <strong>1 a 24 meses</strong> de edad (con un pico clínico entre los 3 y 7 meses), siendo la manifestación distintiva del <strong>Síndrome de West</strong>.</p>
+                <p>En el ámbito de la <strong>Atención Primaria de Salud (APS)</strong>, los pediatras generalistas a menudo carecen de la especialización necesaria para distinguir estos espasmos (que pueden ser sutiles) de movimientos normales de los bebés o reflejos (como el Reflejo de Moro o mioclonías benignas del sueño).</p>
+                <div class="clinical-highlight-box">
+                  <strong>Impacto Crítico:</strong> Cada día de retraso en el diagnóstico y posterior inicio del tratamiento empeora drásticamente el pronóstico cognitivo, motor y neurológico a largo plazo del lactante.
+                </div>
+              </div>
+              
+              <div class="clinical-stat-card">
+                <span class="stat-number">1-24</span>
+                <span class="stat-label">Meses de edad</span>
+                <span class="stat-desc">Población objetivo de lactantes donde se concentran los casos clínicos del Síndrome de West.</span>
+                <hr style="width: 100%; border: 0; border-top: 1px solid rgba(255,255,255,0.05); margin: 0.5rem 0;">
+                <span class="stat-number" style="color: #fb7185;">100%</span>
+                <span class="stat-label">Urgencia Diagnóstica</span>
+                <span class="stat-desc">La derivación temprana al neuropediatra es vital para frenar la hipsarritmia y el daño neurológico permanente.</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="slide-footer">
+            <span class="footer-text">Detección Automatizada de Espasmos Infantiles</span>
+            <div class="logo-ucasal">UCA<span>SAL</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- DIAPOSITIVA 3: La Solución ML -->
+      <section class="slide" id="slide-3" data-slide-index="3">
+        <div class="glass-card">
+          <header class="slide-header">
+            <div>
+              <h2>
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent-purple-light)" stroke-width="2"><path d="M12 2v8M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/><path d="M18 10a6 6 0 0 1-6-6v6H6a6 6 0 0 1 6 6v-6h6z"/></svg>
+                La Solución ML Propuesta
+              </h2>
+              <div class="slide-subtitle">Diseño del sistema de soporte clínico basado en IA</div>
+            </div>
+            <span class="institution-tag">Tecnología ML</span>
+          </header>
+          
+          <div class="slide-body">
+            <div class="grid-3col">
+              
+              <div class="ml-card">
+                <div>
+                  <div class="card-header-icon purple-glow-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 7a2 2 0 0 0-2.45-1.45L11 8.75 3.45 5.55A2 2 0 0 0 1 7.4v10.15a2 2 0 0 0 1.45 1.93L11 22.65l8.55-3.15A2 2 0 0 0 21 17.57V7.4z"/></svg>
+                  </div>
+                  <h3>Formato de Entrada</h3>
+                  <ul>
+                    <li>Videos cortos (10-15 seg) grabados en celulares por los padres o por el pediatra.</li>
+                    <li>Resolución mínima estándar de 480p (640x480) y 24+ FPS.</li>
+                    <li>Niño posicionado acostado o sentado con torso y extremidades totalmente visibles.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="ml-card accent-card">
+                <div>
+                  <div class="card-header-icon cyan-glow-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg>
+                  </div>
+                  <h3>Procesamiento ML</h3>
+                  <ul>
+                    <li>Extracción de clips cortos de 3 segundos (90 frames a 30 FPS).</li>
+                    <li>Clasificación binaria supervisada (espasmo / no espasmo).</li>
+                    <li>Ventana deslizante (Sliding Window) de 3s con stride de 1s (66% overlap).</li>
+                    <li>Diseño de alerta simplificada para pediatra: "Alerta SÍ / NO".</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="ml-card">
+                <div>
+                  <div class="card-header-icon emerald-glow-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10M18 20V4M6 20v-4"/></svg>
+                  </div>
+                  <h3>Métricas y Benchmark</h3>
+                  <ul>
+                    <li>Métrica prioritaria: <strong>Sensibilidad (Recall)</strong> para reducir falsos negativos.</li>
+                    <li>Métrica secundaria: <strong>AUC-ROC</strong> para evaluar la capacidad de discriminación.</li>
+                    <li>Benchmark de referencia: Diop et al. (2024) con un <strong>AUC de 0.813</strong> en base a redes neurales espacio-temporales.</li>
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          
+          <div class="slide-footer">
+            <span class="footer-text">Detección Automatizada de Espasmos Infantiles</span>
+            <div class="logo-ucasal">UCA<span>SAL</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- DIAPOSITIVA 4: Fases -->
+      <section class="slide" id="slide-4" data-slide-index="4">
+        <div class="glass-card">
+          <header class="slide-header">
+            <div>
+              <h2>
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M9 12l2 2 4-4"/></svg>
+                Fases de Diseño del Proyecto
+              </h2>
+              <div class="slide-subtitle">Actividades planificadas y estado actual</div>
+            </div>
+            <span class="institution-tag">Metodología CLIAS</span>
+          </header>
+          
+          <div class="slide-body">
+            <div class="phases-grid">
+              
+              <div class="phase-item">
+                <div class="phase-top">
+                  <span class="phase-num c-purple">Fase 0</span>
+                  <span class="phase-status">✓ Completa</span>
+                </div>
+                <h3>Definición y Objetivos</h3>
+                <p>Delimitación del problema clínico (retraso diagnóstico), definición del output esperado (alerta binaria) y establecimiento del marco ético preliminar.</p>
+                <div class="phase-detail-drawer">
+                  <span>Resolución inicial</span>
+                  <span>Cerrada</span>
+                </div>
+              </div>
+
+              <div class="phase-item">
+                <div class="phase-top">
+                  <span class="phase-num c-purple">Fase 1</span>
+                  <span class="phase-status">✓ Completa</span>
+                </div>
+                <h3>Target Dataset</h3>
+                <p>Establecimiento de criterios de inclusión y exclusión de videos. Definición de la unidad de observación (clips de 3s a 30 FPS) y metadatos contextuales.</p>
+                <div class="phase-detail-drawer">
+                  <span>Criterios clínicos</span>
+                  <span>Cerrada</span>
+                </div>
+              </div>
+
+              <div class="phase-item">
+                <div class="phase-top">
+                  <span class="phase-num c-cyan">Fase 2</span>
+                  <span class="phase-status">✓ Completa</span>
+                </div>
+                <h3>Operacionalización</h3>
+                <p>Selección de fuentes (YouTube/Vimeo). Estrategia de búsqueda (queries en ES/EN/PT). Setup de Label Studio para la anotación distribuida.</p>
+                <div class="phase-detail-drawer">
+                  <span>Decisiones técnicas</span>
+                  <span>Cerrada</span>
+                </div>
+              </div>
+
+              <div class="phase-item">
+                <div class="phase-top">
+                  <span class="phase-num c-cyan">Fase 3</span>
+                  <span class="phase-status">✓ Completa</span>
+                </div>
+                <h3>Proceso de Anotación</h3>
+                <p>Desarrollo conceptual del Manual de Anotación (v1 pre-piloto). Definición del flujo de trabajo, re-anotación y entrenamiento clínico.</p>
+                <div class="phase-detail-drawer">
+                  <span>Flujo de consenso</span>
+                  <span>Cerrada</span>
+                </div>
+              </div>
+
+              <div class="phase-item">
+                <div class="phase-top">
+                  <span class="phase-num c-emerald">Fase 4</span>
+                  <span class="phase-status">✓ Completa</span>
+                </div>
+                <h3>Monitoreo y Calidad</h3>
+                <p>Diseño de métricas de calidad inter-anotador (Kappa de Cohen) y finalización por saturación estadística (AUC consecutivo en piloto).</p>
+                <div class="phase-detail-drawer">
+                  <span>Control estadístico</span>
+                  <span>Cerrada</span>
+                </div>
+              </div>
+
+              <div class="phase-item">
+                <div class="phase-top">
+                  <span class="phase-num c-emerald">Fase 5</span>
+                  <span class="phase-status">✓ Completa</span>
+                </div>
+                <h3>Disponibilización</h3>
+                <p>Diseño de estrategia de publicación híbrida en Zenodo: metadatos y código libres (Nivel 3) e imágenes privadas bajo acuerdo DUA (Nivel 2).</p>
+                <div class="phase-detail-drawer">
+                  <span>DOI + FAIR</span>
+                  <span>Cerrada</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          
+          <div class="slide-footer">
+            <span class="footer-text">Estructura basada en las directrices de la guía CLIAS</span>
+            <div class="logo-ucasal">UCA<span>SAL</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- DIAPOSITIVA 5: Equipo -->
+      <section class="slide" id="slide-5" data-slide-index="5">
+        <div class="glass-card">
+          <header class="slide-header">
+            <div>
+              <h2>
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent-purple)" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                Equipo del Proyecto
+              </h2>
+              <div class="slide-subtitle">Roles y responsabilidades durante la construcción del dataset</div>
+            </div>
+            <span class="institution-tag">Recursos Humanos</span>
+          </header>
+          
+          <div class="slide-body">
+            <div class="team-layout">
+              <div class="team-grid">
+                
+                <div class="team-card">
+                  <span class="role-title">Liderazgo Científico</span>
+                  <div class="role-qty">1 <span>PI</span></div>
+                  <p class="role-desc">Investigadora Principal (Dra. Carolina Cardoso). Supervisión metodológica, redacción de protocolos, firma de acuerdos y dirección científica.</p>
+                  <span class="role-status">Dra. Carolina Cardoso</span>
+                </div>
+
+                <div class="team-card">
+                  <span class="role-title">Gestión Operativa</span>
+                  <div class="role-qty">1 <span>Coordinador</span></div>
+                  <p class="role-desc">Administración del proyecto, resolución de conflictos de etiquetado, auditorías de calidad mensuales, onboarding y redacción de manuales.</p>
+                  <span class="role-status">Dra. Carolina Cardoso / Co-Investigadora</span>
+                </div>
+
+                <div class="team-card">
+                  <span class="role-title">Curación Inicial</span>
+                  <div class="role-qty">1 <span>Revisor</span></div>
+                  <p class="role-desc">Revisión de criterios de inclusión/exclusión técnicos, extracción preliminar, stripping EXIF, y estructuración de JSON inicial.</p>
+                  <span class="role-status">A reclutar (Alumno Medicina/Ing. UCASAL)</span>
+                </div>
+
+                <div class="team-card">
+                  <span class="role-title">Anotación Médica</span>
+                  <div class="role-qty">3 <span>Especialistas</span></div>
+                  <p class="role-desc">Neuropediatras expertos encargados del etiquetado temporal de los videos y clips de 3 segundos, y resolución de consensos.</p>
+                  <span class="role-status">A reclutar (Neuropediatras externos)</span>
+                </div>
+
+              </div>
+              
+              <div class="annotator-criteria-box">
+                <h3>Perfil Requerido del Anotador Clínico</h3>
+                <div class="criteria-list">
+                  <div class="criteria-item">
+                    <span class="criteria-dot">■</span>
+                    <div><strong>Formación Académica:</strong> Especialización completa y acreditada en Neuropediatría.</div>
+                  </div>
+                  <div class="criteria-item">
+                    <span class="criteria-dot">■</span>
+                    <div><strong>Experiencia Clínica:</strong> Mínimo de 3 años de práctica en consultorio o internación neuropediátrica.</div>
+                  </div>
+                  <div class="criteria-item">
+                    <span class="criteria-dot">■</span>
+                    <div><strong>Familiaridad Específica:</strong> Experiencia demostrable en el manejo y diagnóstico clínico del Síndrome de West.</div>
+                  </div>
+                  <div class="criteria-item">
+                    <span class="criteria-dot">■</span>
+                    <div><strong>Compromiso Ético:</strong> Aceptación y firma del Compromiso de Confidencialidad y participación en el piloto.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="slide-footer">
+            <span class="footer-text">Estructura humana recomendada para mitigar sesgos diagnósticos</span>
+            <div class="logo-ucasal">UCA<span>SAL</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- DIAPOSITIVA 6: Cronograma e Hitos -->
+      <section class="slide" id="slide-6" data-slide-index="6">
+        <div class="glass-card">
+          <header class="slide-header">
+            <div>
+              <h2>
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                Cronograma y Tiempos Estimados
+              </h2>
+              <div class="slide-subtitle">Fases de ejecución y hoja de ruta interactiva</div>
+            </div>
+            <span class="institution-tag">Planificación Temporal</span>
+          </header>
+          
+          <div class="slide-body">
+            <div class="timeline-container">
+              <!-- Timeline navigation tabs -->
+              <div class="timeline-nav" id="timeline-tabs">
+                <button class="timeline-tab active" data-step="1">Paso 1: Ética y Protocolo</button>
+                <button class="timeline-tab" data-step="2">Paso 2: Reclutamiento y Setup</button>
+                <button class="timeline-tab" data-step="3">Paso 3: Capacitación y Piloto</button>
+                <button class="timeline-tab" data-step="4">Paso 4: Producción Masiva</button>
+                <button class="timeline-tab" data-step="5">Paso 5: Cierre y Zenodo</button>
+              </div>
+              
+              <!-- Timeline content card dynamic -->
+              <div class="timeline-content-card" id="timeline-content-box">
+                <div class="timeline-card-left">
+                  <div>
+                    <h3 id="timeline-title">Redacción de Protocolo y Aprobación Ética</h3>
+                    <div class="timeline-duration" id="timeline-duration">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                      Plazo: 1 mes de redacción + 1-2 meses de evaluación del CEI
+                    </div>
+                    <p class="timeline-desc" id="timeline-desc">Fase inicial centrada en la preparación del protocolo de investigación detallado para el Comité de Ética en Investigación (CEI) de la UCASAL, asegurando que todos los mecanismos de protección de datos de menores estén legalmente respaldados.</p>
+                  </div>
+                  <div class="timeline-deliverables">
+                    <h4>Documentos a Producir</h4>
+                    <ul id="timeline-docs">
+                      <li>Protocolo de Investigación CEI</li>
+                      <li>Glosario clínico estructurado</li>
+                    </ul>
+                  </div>
+                </div>
+                
+                <div class="timeline-graphic">
+                  <div class="timeline-progress-circle">
+                    <span class="pct" id="timeline-pct">25%</span>
+                    <span class="lbl">Progreso</span>
+                  </div>
+                  <span class="timeline-state-tag" id="timeline-status">Próximo paso crítico</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="slide-footer">
+            <span class="footer-text">Haga clic en las pestañas para explorar los tiempos y actividades del proyecto</span>
+            <div class="logo-ucasal">UCA<span>SAL</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- DIAPOSITIVA 7: Recursos y Herramientas -->
+      <section class="slide" id="slide-7" data-slide-index="7">
+        <div class="glass-card">
+          <header class="slide-header">
+            <div>
+              <h2>
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent-emerald)" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                Recursos y Herramientas Tecnológicas
+              </h2>
+              <div class="slide-subtitle">Infraestructura de software seleccionada</div>
+            </div>
+            <span class="institution-tag">Infraestructura</span>
+          </header>
+          
+          <div class="slide-body">
+            <div class="tools-grid">
+              
+              <div class="tool-card">
+                <span class="tool-badge annot">Anotación</span>
+                <h3>Label Studio</h3>
+                <p class="tool-desc">Plataforma de código abierto configurada y alojada en servidores de la UCASAL. Permite a los neuropediatras etiquetar espasmos y definir rangos temporales en los videos de forma remota y descentralizada.</p>
+                <a href="https://labelstud.io/" target="_blank" class="tool-url">
+                  labelstud.io
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                </a>
+              </div>
+
+              <div class="tool-card">
+                <span class="tool-badge scrap">Extracción y Video</span>
+                <h3>Apify & ffmpeg</h3>
+                <p class="tool-desc">Apify (YouTube Scraper) se utiliza para extraer videos basados en palabras clave y recopilar sus metadatos. ffmpeg y ffprobe realizan el recorte (clips de 10-15s), normalización (30 FPS, MP4/H.264) y descarte de duplicados visuales (pHash).</p>
+                <a href="https://apify.com/" target="_blank" class="tool-url">
+                  apify.com / ffmpeg.org
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                </a>
+              </div>
+
+              <div class="tool-card">
+                <span class="tool-badge infra">Publicación y Datos</span>
+                <h3>Zenodo & Workspace</h3>
+                <p class="tool-desc">Zenodo servirá de repositorio oficial para asignar un DOI al dataset. Google Workspace institucional (@ucasal.edu.ar) aloja los videos RAW bajo estrictas políticas de acceso y encriptación.</p>
+                <a href="https://zenodo.org/" target="_blank" class="tool-url">
+                  zenodo.org
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                </a>
+              </div>
+
+            </div>
+          </div>
+          
+          <div class="slide-footer">
+            <span class="footer-text">Toda la arquitectura técnica prioriza la soberanía de datos institucional de la UCASAL</span>
+            <div class="logo-ucasal">UCA<span>SAL</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- DIAPOSITIVA 8: Etica, Privacidad y Licencias -->
+      <section class="slide" id="slide-8" data-slide-index="8">
+        <div class="glass-card">
+          <header class="slide-header">
+            <div>
+              <h2>
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent-emerald)" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                Marco Ético, Privacidad y Licenciamiento
+              </h2>
+              <div class="slide-subtitle">Garantías legales y políticas de compartición</div>
+            </div>
+            <span class="institution-tag">Cumplimiento Legal</span>
+          </header>
+          
+          <div class="slide-body">
+            <div class="ethics-layout">
+              <div class="ethics-left">
+                
+                <div class="ethics-law-card">
+                  <h4>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    Protección de Datos Personales
+                  </h4>
+                  <p>Alineación estricta con la <strong>Ley Nacional 25.326</strong> (Protección de Datos Personales, Argentina) y la <strong>Ley 26.061</strong> de protección integral de derechos del niño. Para videos con origen en la Unión Europea, se respeta el Reglamento General de Protección de Datos (<strong>GDPR</strong>).</p>
+                </div>
+
+                <div class="ethics-law-card">
+                  <h4>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-purple-light)" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8M16 6L12 2 8 6M12 2v13"/></svg>
+                    Licenciamiento del Dataset
+                  </h4>
+                  <p>La documentación del dataset y manuales se publicarán bajo <strong>Creative Commons CC BY-NC 4.0</strong> (No comercial). Los scripts y código de preprocesamiento usarán la licencia <strong>Apache 2.0</strong>. El acceso a los videos de entrenamiento requerirá la firma digital de un Acuerdo de Uso de Datos (<strong>DUA</strong>).</p>
+                </div>
+
+              </div>
+              
+              <div class="ethics-anonym-box">
+                <h3>Protocolo Técnico de Anonimización</h3>
+                
+                <div class="anonym-step">
+                  <div class="step-num">1</div>
+                  <div class="step-text">
+                    <h4>Blur Facial y de Zona Genital</h4>
+                    <p>Aplicación de desenfoque gaussian de alta densidad sobre rostros para impedir el reconocimiento facial y protección de áreas sensibles en lactantes sin vestimenta.</p>
+                  </div>
+                </div>
+
+                <div class="anonym-step">
+                  <div class="step-num">2</div>
+                  <div class="step-text">
+                    <h4>Eliminación de Audio Completa</h4>
+                    <p>Los audios de los videos clínicos son completamente removidos de los archivos finales para evitar la identificación de voces de familiares o personal de salud en el fondo.</p>
+                  </div>
+                </div>
+
+                <div class="anonym-step">
+                  <div class="step-num">3</div>
+                  <div class="step-text">
+                    <h4>Auditoría de Datos</h4>
+                    <p>Antes de cualquier disponibilización, el Coordinador realiza una auditoría manual del 100% de los videos preprocesados, validando que el anonimizado sea óptimo y libre de EXIF metadata.</p>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          
+          <div class="slide-footer">
+            <span class="footer-text">El bienestar y la privacidad del lactante prevalecen sobre el valor científico de los datos</span>
+            <div class="logo-ucasal">UCA<span>SAL</span></div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Presentation Navigation & Controls Bar -->
+    <footer class="controls-bar" id="presentation-controls">
+      <button class="ctrl-btn" id="prev-slide-btn" title="Anterior diapositiva (Flecha Izquierda)">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      
+      <div class="nav-dots" id="dots-container">
+        <!-- Dot list populated via JavaScript -->
+      </div>
+      
+      <span class="slide-counter" id="slide-number">1 / 8</span>
+      
+      <button class="ctrl-btn" id="next-slide-btn" title="Siguiente diapositiva (Flecha Derecha)">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+      
+      <button class="action-menu-btn" id="open-index-btn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        Índice
+      </button>
+    </footer>
+
+    <!-- Side Index Drawer Menu -->
+    <aside class="index-drawer" id="side-index">
+      <div class="index-header">
+        <h3>Diapositivas</h3>
+        <button class="close-drawer-btn" id="close-index-btn">&times;</button>
+      </div>
+      <ul class="index-list">
+        <li class="index-item active" data-target="1"><span class="index-num">01</span> Portada e Identidad</li>
+        <li class="index-item" data-target="2"><span class="index-num">02</span> El Problema Clínico</li>
+        <li class="index-item" data-target="3"><span class="index-num">03</span> La Solución ML</li>
+        <li class="index-item" data-target="4"><span class="index-num">04</span> Fases de Diseño</li>
+        <li class="index-item" data-target="5"><span class="index-num">05</span> El Equipo y Roles</li>
+        <li class="index-item" data-target="6"><span class="index-num">06</span> Cronograma e Hitos</li>
+        <li class="index-item" data-target="7"><span class="index-num">07</span> Recursos Tecnológicos</li>
+        <li class="index-item" data-target="8"><span class="index-num">08</span> Ética y Privacidad</li>
+      </ul>
+    </aside>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

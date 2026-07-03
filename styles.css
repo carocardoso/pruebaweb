@@ -1,0 +1,1780 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --bg-primary: #090d16;
+  --bg-secondary: #111827;
+  --card-bg: rgba(17, 24, 39, 0.55);
+  --card-border: rgba(255, 255, 255, 0.08);
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.06);
+  --text-primary: #f3f4f6;
+  --text-secondary: #a1a1aa;
+  --text-muted: #71717a;
+  
+  --accent-purple: #8b5cf6;
+  --accent-purple-glow: rgba(139, 92, 246, 0.15);
+  --accent-cyan: #06b6d4;
+  --accent-cyan-glow: rgba(6, 182, 212, 0.15);
+  --accent-emerald: #10b981;
+  --accent-emerald-glow: rgba(16, 185, 129, 0.15);
+  
+  --font-title: 'Outfit', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  
+  --transition-slow: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-medium: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: all 0.2s ease;
+  
+  --slide-width: 100vw;
+  --slide-height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.8s cubic-bezier(0.16, 1, 0.3, 1), color 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Background Blobs */
+.bg-blobs {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(140px);
+  opacity: 0.35;
+  animation: float 25s infinite alternate ease-in-out;
+}
+
+.blob-1 {
+  top: -10%;
+  left: -10%;
+  width: 55vw;
+  height: 55vw;
+  background: radial-gradient(circle, var(--accent-purple) 0%, transparent 80%);
+  animation-delay: 0s;
+}
+
+.blob-2 {
+  bottom: -15%;
+  right: -10%;
+  width: 60vw;
+  height: 60vw;
+  background: radial-gradient(circle, var(--accent-cyan) 0%, transparent 80%);
+  animation-delay: 2s;
+}
+
+.blob-3 {
+  top: 40%;
+  left: 50%;
+  width: 40vw;
+  height: 40vw;
+  background: radial-gradient(circle, var(--accent-emerald) 0%, transparent 80%);
+  opacity: 0.15;
+  animation-delay: 4s;
+}
+
+@keyframes float {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(6%, 8%) scale(1.1);
+  }
+  100% {
+    transform: translate(-4%, -5%) scale(0.95);
+  }
+}
+
+/* Presentation Viewport */
+.presentation-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Slides Wrapper */
+.slides-wrapper {
+  flex: 1;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  opacity: 0;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 6rem;
+  transition: var(--transition-slow);
+}
+
+.slide.active {
+  display: flex;
+  opacity: 1;
+  animation: slideIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Glass Card Base */
+.glass-card {
+  background-color: var(--card-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--card-border);
+  border-radius: 24px;
+  padding: 2.5rem;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  max-width: 1200px;
+  width: 95%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+}
+
+/* Typography styles */
+h1, h2, h3, h4 {
+  font-family: var(--font-title);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.gradient-text-purple {
+  background: linear-gradient(135deg, #a78bfa 0%, #7c3aed 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-text-cyan {
+  background: linear-gradient(135deg, #67e8f9 0%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-text-emerald {
+  background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Slide Header */
+.slide-header {
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding-bottom: 1rem;
+}
+
+.slide-header h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.slide-header .slide-subtitle {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 0.25rem;
+}
+
+.slide-header .institution-tag {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.35rem 0.85rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+}
+
+/* Slide Content Core */
+.slide-body {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.slide-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.slide-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.slide-body::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+/* DIAPOSITIVA 1: Portada */
+.cover-layout {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+}
+
+.cover-badge {
+  background: var(--accent-purple-glow);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  color: #c084fc;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.5rem 1.25rem;
+  border-radius: 100px;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.1);
+  animation: pulse 3s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 20px rgba(139, 92, 246, 0.1); }
+  50% { opacity: 0.85; box-shadow: 0 0 25px rgba(139, 92, 246, 0.25); }
+}
+
+.cover-title {
+  font-size: 3.8rem;
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 1.5rem;
+  max-width: 1000px;
+}
+
+.cover-subtitle {
+  font-size: 1.35rem;
+  color: var(--text-secondary);
+  margin-bottom: 3.5rem;
+  max-width: 750px;
+  font-weight: 300;
+}
+
+.cover-team {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 2rem;
+  width: 80%;
+}
+
+.team-member {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.member-role {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25rem;
+}
+
+.member-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.member-inst {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* DIAPOSITIVA 2: El Problema Clínico */
+.grid-2col {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 2.5rem;
+  height: 100%;
+}
+
+.clinical-description {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.clinical-description p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.clinical-highlight-box {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.08) 0%, rgba(239, 68, 68, 0.02) 100%);
+  border-left: 4px solid var(--accent-red);
+  padding: 1.5rem;
+  border-radius: 0 16px 16px 0;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  color: #fca5a5;
+  font-weight: 500;
+}
+
+.clinical-stat-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 2.5rem;
+  text-align: center;
+  gap: 1rem;
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.2);
+}
+
+.stat-number {
+  font-family: var(--font-title);
+  font-size: 4rem;
+  font-weight: 800;
+  color: #f87171;
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.stat-desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+/* DIAPOSITIVA 3: La Solución ML */
+.grid-3col {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.1fr;
+  gap: 1.5rem;
+  height: 100%;
+}
+
+.ml-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: var(--transition-medium);
+}
+
+.ml-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255,255,255,0.15);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.card-header-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+
+.purple-glow-icon { background: var(--accent-purple-glow); color: var(--accent-purple-light); }
+.cyan-glow-icon { background: var(--accent-cyan-glow); color: var(--accent-cyan-light); }
+.emerald-glow-icon { background: var(--accent-emerald-glow); color: var(--accent-emerald-light); }
+
+.ml-card h3 {
+  font-size: 1.35rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.ml-card ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.ml-card li {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  position: relative;
+  padding-left: 1.25rem;
+}
+
+.ml-card li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--accent-cyan);
+}
+
+.ml-card.accent-card {
+  border-color: rgba(6, 182, 212, 0.3);
+  box-shadow: 0 10px 30px rgba(6, 182, 212, 0.05);
+}
+
+/* DIAPOSITIVA 4: Fases */
+.phases-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 1.25rem;
+  height: 100%;
+}
+
+.phase-item {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 1.25rem;
+  position: relative;
+  cursor: pointer;
+  transition: var(--transition-medium);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.phase-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.12);
+  transform: translateY(-3px);
+}
+
+.phase-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.phase-num {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+}
+
+.phase-num.c-purple { background: var(--accent-purple-glow); color: var(--accent-purple-light); }
+.phase-num.c-cyan { background: var(--accent-cyan-glow); color: var(--accent-cyan-light); }
+.phase-num.c-emerald { background: var(--accent-emerald-glow); color: var(--accent-emerald-light); }
+
+.phase-status {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--accent-emerald);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.phase-item h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.phase-item p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  flex: 1;
+}
+
+.phase-detail-drawer {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  border-top: 1px solid rgba(255,255,255,0.03);
+  padding-top: 0.5rem;
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* DIAPOSITIVA 5: Equipo */
+.team-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 2.5rem;
+  height: 100%;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.team-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: var(--transition-fast);
+}
+
+.team-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.team-card .role-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--accent-purple-light);
+  letter-spacing: 0.05em;
+}
+
+.team-card .role-qty {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.team-card .role-qty span {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--text-secondary);
+}
+
+.team-card .role-desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.team-card .role-status {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: auto;
+  border-top: 1px solid rgba(255,255,255,0.03);
+  padding-top: 0.5rem;
+}
+
+.annotator-criteria-box {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.08) 0%, rgba(139, 92, 246, 0.01) 100%);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: 20px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.annotator-criteria-box h3 {
+  font-size: 1.3rem;
+  color: var(--text-primary);
+  border-bottom: 1px solid rgba(139, 92, 246, 0.15);
+  padding-bottom: 0.5rem;
+}
+
+.criteria-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.criteria-item {
+  display: flex;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: var(--text-secondary);
+}
+
+.criteria-item strong {
+  color: var(--text-primary);
+}
+
+.criteria-dot {
+  color: var(--accent-purple);
+  font-weight: bold;
+}
+
+/* DIAPOSITIVA 6: Cronograma (Timeline) */
+.timeline-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.timeline-nav {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+}
+
+.timeline-tab {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  color: var(--text-secondary);
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: var(--transition-fast);
+  white-space: nowrap;
+}
+
+.timeline-tab.active {
+  background: var(--accent-cyan-glow);
+  border-color: var(--accent-cyan);
+  color: var(--text-primary);
+}
+
+.timeline-content-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 20px;
+  padding: 2rem;
+  flex: 1;
+  display: flex;
+  gap: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.timeline-card-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.timeline-card-left h3 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.timeline-duration {
+  font-size: 1rem;
+  color: var(--accent-cyan);
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.timeline-desc {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.timeline-deliverables {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+  padding: 1.25rem;
+}
+
+.timeline-deliverables h4 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.timeline-deliverables ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+}
+
+.timeline-deliverables li {
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.timeline-deliverables li::before {
+  content: '✓';
+  color: var(--accent-cyan);
+  font-weight: bold;
+}
+
+.timeline-graphic {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-left: 1px solid rgba(255,255,255,0.05);
+  padding-left: 2rem;
+}
+
+.timeline-progress-circle {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 4px solid var(--accent-cyan);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  background: var(--bg-primary);
+  box-shadow: 0 0 30px var(--accent-cyan-glow);
+}
+
+.timeline-progress-circle span.pct {
+  font-family: var(--font-title);
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.timeline-progress-circle span.lbl {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.timeline-state-tag {
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 0.35rem 0.75rem;
+  border-radius: 8px;
+  color: var(--text-secondary);
+}
+
+/* DIAPOSITIVA 7: Recursos y Herramientas */
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  height: 100%;
+}
+
+.tool-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: var(--transition-medium);
+}
+
+.tool-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-3px);
+}
+
+.tool-badge {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  width: fit-content;
+}
+
+.tool-badge.annot { background: rgba(139, 92, 246, 0.15); color: #a78bfa; }
+.tool-badge.scrap { background: rgba(6, 182, 212, 0.15); color: #67e8f9; }
+.tool-badge.infra { background: rgba(16, 185, 129, 0.15); color: #34d399; }
+
+.tool-card h3 {
+  font-size: 1.4rem;
+  color: var(--text-primary);
+}
+
+.tool-desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+}
+
+.tool-url {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  transition: var(--transition-fast);
+}
+
+.tool-url:hover {
+  color: var(--text-primary);
+}
+
+/* DIAPOSITIVA 8: Etica, Privacidad y Licencias */
+.ethics-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  height: 100%;
+}
+
+.ethics-left {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.ethics-law-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.ethics-law-card h4 {
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ethics-law-card p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+}
+
+.ethics-anonym-box {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(16, 185, 129, 0.01) 100%);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 20px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.ethics-anonym-box h3 {
+  font-size: 1.3rem;
+  color: var(--text-primary);
+  border-bottom: 1px solid rgba(16, 185, 129, 0.15);
+  padding-bottom: 0.5rem;
+}
+
+.anonym-step {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.step-num {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--accent-emerald-glow);
+  color: var(--accent-emerald);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.step-text h4 {
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.step-text p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+/* Glass Card Footer */
+.slide-footer {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 1rem;
+}
+
+.slide-footer .footer-text {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.slide-footer .logo-ucasal {
+  font-family: var(--font-title);
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.slide-footer .logo-ucasal span {
+  color: var(--accent-cyan);
+}
+
+/* Presentation Controls */
+.controls-bar {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(17, 24, 39, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--card-border);
+  padding: 0.75rem 1.5rem;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  z-index: 100;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.ctrl-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-fast);
+}
+
+.ctrl-btn:hover {
+  background: rgba(255,255,255,0.08);
+  color: var(--text-primary);
+}
+
+.ctrl-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.nav-dots {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.nav-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.nav-dot:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.nav-dot.active {
+  background: var(--accent-cyan);
+  width: 20px;
+  border-radius: 4px;
+  box-shadow: 0 0 10px var(--accent-cyan-glow);
+}
+
+.slide-counter {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  font-family: var(--font-title);
+  min-width: 45px;
+  text-align: center;
+}
+
+.action-menu-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.35rem 0.85rem;
+  border-radius: 100px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: var(--transition-fast);
+}
+
+.action-menu-btn:hover {
+  background: rgba(255,255,255,0.1);
+  color: var(--text-primary);
+  border-color: rgba(255,255,255,0.15);
+}
+
+/* Slide Index Drawer */
+.index-drawer {
+  position: absolute;
+  top: 0;
+  left: -320px;
+  width: 320px;
+  height: 100%;
+  background: rgba(11, 15, 25, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-right: 1px solid var(--card-border);
+  z-index: 150;
+  transition: var(--transition-medium);
+  padding: 2.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  box-shadow: 15px 0 50px rgba(0, 0, 0, 0.5);
+}
+
+.index-drawer.open {
+  left: 0;
+}
+
+.index-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.index-header h3 {
+  font-size: 1.25rem;
+}
+
+.close-drawer-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 1.25rem;
+}
+
+.index-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  list-style: none;
+}
+
+.index-item {
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.index-item:hover {
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-primary);
+}
+
+.index-item.active {
+  background: var(--accent-purple-glow);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.index-num {
+  font-family: var(--font-title);
+  font-size: 0.8rem;
+  color: var(--accent-purple-light);
+  width: 20px;
+}
+
+/* Continuous Scroll Mode for Printing / PDF Export */
+body.continuous-mode {
+  overflow-y: auto;
+  height: auto;
+  width: 100%;
+  background: #030712;
+}
+
+body.continuous-mode .bg-blobs,
+body.continuous-mode .controls-bar,
+body.continuous-mode .index-drawer {
+  display: none !important;
+}
+
+body.continuous-mode .presentation-container {
+  height: auto;
+  width: 100%;
+}
+
+body.continuous-mode .slides-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+  padding: 4rem 2rem;
+  height: auto;
+}
+
+body.continuous-mode .slide {
+  position: relative !important;
+  display: flex !important;
+  opacity: 1 !important;
+  width: 100% !important;
+  height: auto !important;
+  min-height: calc(100vh - 6rem) !important;
+  padding: 0 !important;
+  transform: none !important;
+}
+
+body.continuous-mode .glass-card {
+  width: 100%;
+  max-width: 1500px;
+  height: auto;
+  min-height: 1400px;
+}
+
+.view-mode-bar {
+  position: fixed;
+  top: 1rem;
+  right: 2rem;
+  z-index: 200;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.view-mode-btn {
+  background: rgba(17, 24, 39, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--card-border);
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 100px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  transition: var(--transition-fast);
+}
+
+.view-mode-btn:hover {
+  background: rgba(255,255,255,0.08);
+  color: var(--text-primary);
+}
+
+/* Print CSS */
+@media print {
+  @page {
+    size: A4 landscape;
+    margin: 0;
+  }
+  
+  body {
+    background: #000000 !important;
+    color: #ffffff !important;
+    overflow: visible !important;
+    height: auto !important;
+    width: 100% !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  
+  .bg-blobs,
+  .controls-bar,
+  .index-drawer,
+  .view-mode-bar,
+  .slide-footer,
+  .slide-header .institution-tag {
+    display: none !important;
+  }
+  
+  .presentation-container,
+  .slides-wrapper {
+    height: auto !important;
+    width: 100% !important;
+    display: block !important;
+  }
+  
+  .slide {
+    position: relative !important;
+    display: flex !important;
+    opacity: 1 !important;
+    height: 100vh !important;
+    min-height: 100vh !important;
+    page-break-after: always !important;
+    page-break-inside: avoid !important;
+    padding: 2rem !important;
+    justify-content: center !important;
+    align-items: center !important;
+    transform: none !important;
+    background: #000000 !important;
+  }
+  
+  .glass-card {
+    border: none !important;
+    background: #090d16 !important;
+    width: 100% !important;
+    height: 90% !important;
+    box-shadow: none !important;
+    padding: 1.5rem !important;
+  }
+  
+  .ml-card, .phase-item, .team-card, .ethics-law-card, .tool-card {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  }
+}
+
+/* Tablet / Laptop adaptations */
+@media (max-width: 1024px) {
+  .slide {
+    padding: 2rem 3rem;
+  }
+  .glass-card {
+    height: 85%;
+    padding: 1.75rem;
+  }
+  .cover-title {
+    font-size: 2.8rem;
+  }
+  .grid-2col {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    overflow-y: auto;
+  }
+  .clinical-stat-card {
+    padding: 1.5rem;
+  }
+  .grid-3col {
+    grid-template-columns: 1fr;
+    overflow-y: auto;
+  }
+  .phases-grid {
+    grid-template-columns: 1fr 1fr;
+    overflow-y: auto;
+  }
+  .team-layout {
+    grid-template-columns: 1fr;
+    overflow-y: auto;
+  }
+  .tools-grid {
+    grid-template-columns: 1fr 1fr;
+    overflow-y: auto;
+  }
+  .ethics-layout {
+    grid-template-columns: 1fr;
+    overflow-y: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .slide {
+    padding: 1rem 1.5rem;
+  }
+  .glass-card {
+    height: 90%;
+    padding: 1.25rem;
+    border-radius: 16px;
+  }
+  .cover-title {
+    font-size: 2rem;
+  }
+  .cover-subtitle {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+  .cover-team {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .phases-grid {
+    grid-template-columns: 1fr;
+  }
+  .tools-grid {
+    grid-template-columns: 1fr;
+  }
+  .controls-bar {
+    width: 95%;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+  }
+  .slide-header h2 {
+    font-size: 1.6rem;
+  }
+}
+
+/* ==========================================================================
+   LIGHT THEME STYLES (Slides 2-8)
+   ========================================================================== */
+
+body.light-theme {
+  background-color: #f0f4f8;
+  color: #1f2937;
+  transition: background-color 0.8s cubic-bezier(0.16, 1, 0.3, 1), color 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Background Blobs in Light Theme */
+body.light-theme .blob-1 {
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.08) 0%, transparent 80%);
+}
+body.light-theme .blob-2 {
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.08) 0%, transparent 80%);
+}
+body.light-theme .blob-3 {
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.05) 0%, transparent 80%);
+}
+
+/* Light Glass Card Style */
+body.light-theme .glass-card {
+  background-color: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+  color: #1f2937;
+}
+
+body.light-theme .glass-card::before {
+  background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.04), transparent);
+}
+
+/* Header Text Styling */
+body.light-theme .slide-header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+body.light-theme .slide-header .slide-subtitle {
+  color: #4b5563;
+}
+
+body.light-theme .slide-header .institution-tag {
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  color: #4b5563;
+}
+
+body.light-theme .slide-body::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+/* Slide 2: Problema Clinico */
+body.light-theme .clinical-description p {
+  color: #374151;
+}
+
+body.light-theme .clinical-highlight-box {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.05) 0%, rgba(239, 68, 68, 0.01) 100%);
+  color: #b91c1c;
+  border-left-color: #ef4444;
+}
+
+body.light-theme .clinical-stat-card {
+  background: rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  color: #1f2937;
+}
+
+body.light-theme .clinical-stat-card .stat-desc {
+  color: #6b7280;
+}
+
+/* Slide 3: ML cards */
+body.light-theme .ml-card {
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+body.light-theme .ml-card:hover {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+body.light-theme .ml-card h3 {
+  color: #111827;
+}
+
+body.light-theme .ml-card li {
+  color: #4b5563;
+}
+
+body.light-theme .ml-card.accent-card {
+  border-color: rgba(6, 182, 212, 0.25);
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 10px 25px rgba(6, 182, 212, 0.04);
+}
+
+/* Slide 4: Phase Grid Items */
+body.light-theme .phase-item {
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+body.light-theme .phase-item:hover {
+  background: rgba(255, 255, 255, 0.8);
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+body.light-theme .phase-item h3 {
+  color: #111827;
+}
+
+body.light-theme .phase-item p {
+  color: #4b5563;
+}
+
+body.light-theme .phase-detail-drawer {
+  border-top-color: rgba(0, 0, 0, 0.04);
+  color: #6b7280;
+}
+
+/* Slide 5: Team layout */
+body.light-theme .team-card {
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+body.light-theme .team-card:hover {
+  background: rgba(255, 255, 255, 0.8);
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+body.light-theme .team-card .role-qty {
+  color: #111827;
+}
+
+body.light-theme .team-card .role-qty span {
+  color: #6b7280;
+}
+
+body.light-theme .team-card .role-desc {
+  color: #4b5563;
+}
+
+body.light-theme .team-card .role-status {
+  border-top-color: rgba(0, 0, 0, 0.04);
+  color: #4b5563;
+}
+
+body.light-theme .annotator-criteria-box {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.04) 0%, rgba(139, 92, 246, 0.00) 100%);
+  border-color: rgba(139, 92, 246, 0.15);
+}
+
+body.light-theme .annotator-criteria-box h3 {
+  color: #111827;
+  border-bottom-color: rgba(139, 92, 246, 0.1);
+}
+
+body.light-theme .criteria-item {
+  color: #4b5563;
+}
+
+body.light-theme .criteria-item strong {
+  color: #1f2937;
+}
+
+/* Slide 6: Timeline components */
+body.light-theme .timeline-tab {
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  color: #4b5563;
+}
+
+body.light-theme .timeline-tab:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+body.light-theme .timeline-tab.active {
+  background: rgba(6, 182, 212, 0.08);
+  border-color: var(--accent-cyan);
+  color: #0891b2;
+}
+
+body.light-theme .timeline-content-card {
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+body.light-theme .timeline-card-left h3 {
+  color: #111827;
+}
+
+body.light-theme .timeline-desc {
+  color: #4b5563;
+}
+
+body.light-theme .timeline-deliverables {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+body.light-theme .timeline-deliverables h4 {
+  color: #6b7280;
+}
+
+body.light-theme .timeline-deliverables li {
+  color: #1f2937;
+}
+
+body.light-theme .timeline-progress-circle {
+  background: #ffffff;
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.08);
+}
+
+body.light-theme .timeline-progress-circle span.pct {
+  color: #111827;
+}
+
+body.light-theme .timeline-state-tag {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.06);
+  color: #4b5563;
+}
+
+/* Slide 7: Tools */
+body.light-theme .tool-card {
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+body.light-theme .tool-card:hover {
+  background: rgba(255, 255, 255, 0.8);
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+body.light-theme .tool-card h3 {
+  color: #111827;
+}
+
+body.light-theme .tool-desc {
+  color: #4b5563;
+}
+
+body.light-theme .tool-url {
+  color: #6b7280;
+}
+
+body.light-theme .tool-url:hover {
+  color: #111827;
+}
+
+/* Slide 8: Ethics & Law */
+body.light-theme .ethics-law-card {
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+body.light-theme .ethics-law-card h4 {
+  color: #111827;
+}
+
+body.light-theme .ethics-law-card p {
+  color: #4b5563;
+}
+
+body.light-theme .ethics-anonym-box {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.04) 0%, rgba(16, 185, 129, 0.00) 100%);
+  border-color: rgba(16, 185, 129, 0.15);
+}
+
+body.light-theme .ethics-anonym-box h3 {
+  color: #111827;
+  border-bottom-color: rgba(16, 185, 129, 0.1);
+}
+
+body.light-theme .step-text h4 {
+  color: #111827;
+}
+
+body.light-theme .step-text p {
+  color: #4b5563;
+}
+
+/* Footer elements */
+body.light-theme .slide-footer {
+  border-top-color: rgba(0, 0, 0, 0.06);
+}
+
+body.light-theme .slide-footer .footer-text {
+  color: #6b7280;
+}
+
+body.light-theme .slide-footer .logo-ucasal {
+  color: #4b5563;
+}
+
+/* Index Drawer */
+body.light-theme .index-drawer {
+  background: rgba(255, 255, 255, 0.98);
+  border-right-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 15px 0 50px rgba(0, 0, 0, 0.04);
+  color: #1f2937;
+}
+
+body.light-theme .index-drawer h3 {
+  color: #111827;
+}
+
+body.light-theme .index-item {
+  color: #4b5563;
+}
+
+body.light-theme .index-item:hover {
+  background: rgba(0, 0, 0, 0.03);
+  color: #111827;
+}
+
+body.light-theme .index-item.active {
+  background: rgba(139, 92, 246, 0.08);
+  border-color: rgba(139, 92, 246, 0.15);
+  color: #7c3aed;
+}
+
+/* Slide control bar */
+body.light-theme .controls-bar {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+body.light-theme .ctrl-btn {
+  color: #4b5563;
+}
+
+body.light-theme .ctrl-btn:hover {
+  background: rgba(0, 0, 0, 0.04);
+  color: #111827;
+}
+
+body.light-theme .nav-dot {
+  background: rgba(0, 0, 0, 0.12);
+}
+
+body.light-theme .nav-dot:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+body.light-theme .nav-dot.active {
+  background: var(--accent-cyan);
+}
+
+body.light-theme .slide-counter {
+  color: #4b5563;
+}
+
+body.light-theme .action-menu-btn {
+  background: rgba(0, 0, 0, 0.02);
+  border-color: rgba(0, 0, 0, 0.05);
+  color: #4b5563;
+}
+
+body.light-theme .action-menu-btn:hover {
+  background: rgba(0, 0, 0, 0.04);
+  color: #111827;
+}
